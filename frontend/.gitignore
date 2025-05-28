@@ -1,0 +1,12 @@
+# Node modules & 빌드 산출
+node_modules/
+dist/
+
+# 환경파일
+.env
+.env.local
+.env.*.local
+
+# IDE, macOS 잔재
+.vscode/
+.DS_Store
