@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wheel Map</title>
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=41fd2801c67814ac1713d676cf3491d2"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: sans-serif;
+    }
+    #map {
+      width: 100%;
+      height: 50vh;
+    }
+    .menu {
+      background: #0056d2;
+      color: white;
+      padding: 12px 16px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+    }
+    #hospital-cards,
+    #eng1-cards {
+      display: none;
+      flex-direction: column;
+    }
+    #hospital-cards.active,
+    #eng1-cards.active {
+      display: flex;
+    }
+    .card {
+      padding: 16px;
+      background: white;
+      margin: 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hashtag {
+      display: inline-block;
+      background: #f0f0f0;
+      border-radius: 8px;
+      padding: 4px 8px;
+      margin: 2px 4px;
+      font-size: 13px;
+    }
+    .photo {
+      width: 100%;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+    .section-title {
+      font-weight: bold;
+      margin-top: 16px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    .table td {
+      padding: 6px;
+      border-bottom: 1px solid #eee;
+    }
+    .comment {
+      background: #f8f8f8;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 6px 0;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 8px;
+      background: #2f63ff;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <div>Wheel Map</div>
+    <div>☰</div>
+  </div>
+  <div id="map"></div>
+
+  <div id="hospital-cards">
+    <div class="card">
+      <h3>연세대학교 세브란스 병원 <button style="float:right;background:#f5c518;border:none;border-radius:6px;padding:4px 8px;">정보 등록하기</button></h3>
+      <div>
+        <span class="hashtag">#장애인화장실</span>
+        <span class="hashtag">#경사로</span>
+        <span class="hashtag">#다른거 아무거나</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">경사로 현황</div>
+      <img class="photo" src="hpgsr.jpg" alt="경사로 사진">
+      <a href="#" class="btn">사진 더 보기</a>
+    </div>
+    <div class="card">
+      <div class="section-title">승강기 현황</div>
+      <table class="table">
+        <tr><td>현재 운행 여부</td><td>운영 중</td></tr>
+        <tr><td>승강기 점검 결과</td><td>양호</td></tr>
+      </table>
+      <img class="photo" src="hpelv.jpg" alt="승강기 사진">
+      <a href="#" class="btn">사진 더 보기</a>
+    </div>
+    <div class="card">
+      <div class="section-title">사용자 의견</div>
+      <div class="comment">건물에 장애인 화장실이 없어서 불편해요 👍 1</div>
+      <div class="comment">건물에 장애인 화장실이 너무 많아요 이제 더 만들지 말아주세요 👍 2</div>
+      <div class="comment">건물에 경사로가 38개 있어서 경사가 많이 져 있어요 👍 38</div>
+      <a href="#" class="btn">댓글 더 보기</a>
+    </div>
+  </div>
+  <div id="eng1-cards">
+    <div class="card">
+      <h3>연세대학교 제1공학관 <button style="float:right;background:#f5c518;border:none;border-radius:6px;padding:4px 8px;">정보 등록하기</button></h3>
+      <div>
+        <span class="hashtag">#엘리베이터</span>
+        <span class="hashtag">#출입구경사</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">경사로 현황</div>
+      <img class="photo" src="engsr.jpg" alt="경사로 사진">
+      <a href="#" class="btn">사진 더 보기</a>
+    </div>
+    <div class="card">
+      <div class="section-title">승강기 현황</div>
+      <table class="table">
+        <tr><td>현재 운행 여부</td><td>점검 중</td></tr>
+        <tr><td>승강기 점검 결과</td><td>불량</td></tr>
+      </table>
+      <img class="photo" src="enelv.jpg" alt="승강기 사진">
+      <a href="#" class="btn">사진 더 보기</a>
+    </div>
+    <div class="card">
+      <div class="section-title">사용자 의견</div>
+      <div class="comment">엘리베이터가 고장 나 있어 불편했습니다. 👍 4</div>
+      <div class="comment">경사로 경사가 완만해서 휠체어 이동이 쉬웠어요 👍 12</div>
+      <div class="comment">입구에 턱이 있어서 진입이 힘들어요 👍 6</div>
+      <a href="#" class="btn">댓글 더 보기</a>
+    </div>
+  </div>
+
+  <script>
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+      center: new kakao.maps.LatLng(37.5618, 126.9368),
+      level: 3
+    };
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    const hospitalMarker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(37.562, 126.9368),
+      title: '연세대학교 세브란스 병원'
+    });
+    hospitalMarker.setMap(map);
+
+    const eng1Marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(37.5612, 126.9353),
+      title: '연세대학교 제1공학관'
+    });
+    eng1Marker.setMap(map);
+
+    const hospitalContainer = document.getElementById('hospital-cards');
+    const eng1Container = document.getElementById('eng1-cards');
+
+    function hideAllContainers() {
+      hospitalContainer.classList.remove('active');
+      eng1Container.classList.remove('active');
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('show'));
+    }
+
+    function showCards(container) {
+      container.classList.add('active');
+      setTimeout(() => {
+        container.querySelectorAll('.card').forEach(card => card.classList.add('show'));
+      }, 10);
+    }
+
+    hospitalMarker.addListener('click', () => {
+      hideAllContainers();
+      showCards(hospitalContainer);
+    });
+
+    eng1Marker.addListener('click', () => {
+      hideAllContainers();
+      showCards(eng1Container);
+    });
+
+    kakao.maps.event.addListener(map, 'click', () => {
+      hideAllContainers();
+    });
+  </script>
+</body>
+</html>
