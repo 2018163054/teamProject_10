@@ -1,1 +1,9 @@
+/* frontend/src/css/index.css */
 @import "tailwindcss";
+
+
+@layer base {
+  body {
+    @apply font-sans; 
+  }
+}
