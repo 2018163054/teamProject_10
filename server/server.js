@@ -8,10 +8,11 @@ const commentRoutes = require("./src/routes/comment");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
 
 app.use("/posts", postRoutes);
 
-app.use("/comments", commentRoutes);
+app.use("/", commentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
