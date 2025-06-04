@@ -8,27 +8,20 @@
     />
     <title>Wheel Map</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- ② Kakao Map SDK (반드시 API 키를 .env에 넣은 뒤, 여기에 process.env로 주입하거나
-            local 개발 단계에서는 키를 하드코딩해도 됩니다) -->
+    <!-- ① Kakao Maps SDK -->
     <script
-      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=55fea4287ee803a52964dcdb5655bfae&libraries=services"
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=55fea4287ee803a52964dcdb5655bfae&libraries=services&autoload=false"
       defer
     ></script>
 
-    <!-- Tailwind v4 최종 CSS -->
+    <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/src/css/index.css" />
   </head>
-  
   <body class="bg-gray-100 min-h-screen">
-    <!-- JS가 컴포넌트를 렌더링할 실제 마운트 포인트 -->
+
     <div id="app"></div>
 
-    <!-- main.js 에서 Kakao 지도, 마커, 카드 로직 등을 모두 담당 -->
+    <!-- main.js (모듈) -->
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>

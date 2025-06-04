@@ -5,9 +5,7 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['"Noto Sans KR"', 'sans-serif'],
-      },
+      
     },
   },
   plugins: [],

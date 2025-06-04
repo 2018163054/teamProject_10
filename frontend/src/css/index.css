@@ -2,8 +2,3 @@
 @import "tailwindcss";
 
 
-@layer base {
-  body {
-    @apply font-sans; 
-  }
-}
